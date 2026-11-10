@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>SMIF Post Studio</title>
+<meta name="description" content="Make on-brand SMIF Club posts and stories in a few minutes.">
+<link rel="icon" href="assets/logo-green.png">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body data-view="studio" data-tab="templates">
+
+<header class="topbar">
+  <div class="brandmark">
+    <img src="assets/logo-ivory-gold.png" alt="SMIF Club" class="brandlogo">
+    <span class="appname">Post Studio</span>
+  </div>
+  <nav class="viewnav" aria-label="Main">
+    <button type="button" class="navbtn is-on" data-view-btn="studio">Studio</button>
+    <button type="button" class="navbtn" data-view-btn="brand">Brand kit</button>
+  </nav>
+  <div class="topactions">
+    <span class="savestate" id="saveState" role="status" aria-live="polite"></span>
+    <button type="button" class="ghost" id="openBtn">Open design</button>
+    <button type="button" class="ghost" id="saveBtn">Save design</button>
+    <button type="button" class="ghost" id="resetBtn">Start over</button>
+    <input type="file" id="openFile" accept=".json,.smif.json,application/json" hidden>
+  </div>
+</header>
+
+<div class="banner" id="fontBanner" role="alert" hidden>Fonts did not load, refresh the page.</div>
+
+<main class="studio" id="studio">
+  <nav class="tabs" aria-label="Sections">
+    <button type="button" class="tab is-on" data-tab-btn="templates">Templates</button>
+    <button type="button" class="tab" data-tab-btn="edit">Edit</button>
+    <button type="button" class="tab" data-tab-btn="brand">Brand kit</button>
+  </nav>
+
+  <section class="pane pane-templates" id="paneTemplates" aria-label="Templates">
+    <h2 class="panehead">Pick a template</h2>
+    <div class="gallery" id="gallery"></div>
+  </section>
+
+  <section class="stage" aria-label="Preview">
+    <div class="stagebar">
+      <div class="stagetitle" id="stageTitle"></div>
+      <label class="check" id="safeWrap" hidden><input type="checkbox" id="safeToggle" checked> Show safe area</label>
+    </div>
+    <div class="canvaswrap" id="canvasWrap">
+      <canvas id="preview" width="1080" height="1350" aria-label="Post preview"></canvas>
+    </div>
+    <div class="actions" id="actions">
+      <button type="button" class="primary" id="downloadBtn">Download PNG</button>
+      <button type="button" class="secondary" id="shareBtn" hidden>Share or save to Photos</button>
+    </div>
+    <p class="hint" id="exportNote"></p>
+    <div class="showrow"><button type="button" class="linkbtn" id="showBtn">Trouble saving? Show the image</button></div>
+  </section>
+
+  <section class="pane pane-edit" id="paneEdit" aria-label="Edit">
+    <h2 class="panehead">Size</h2>
+    <div class="seg" id="sizeSeg" role="radiogroup" aria-label="Size"></div>
+    <h2 class="panehead">Color theme</h2>
+    <div class="themes" id="themeRow" role="radiogroup" aria-label="Theme"></div>
+    <h2 class="panehead" id="fieldsHead">Text</h2>
+    <div class="fields" id="fields"></div>
+    <div id="photoHead"><h2 class="panehead">Photo</h2></div>
+    <div class="photos" id="photos"></div>
+  </section>
+</main>
+
+<section class="brandkit" id="brandkit" aria-label="Brand kit" hidden>
+  <div class="bk-inner">
+    <h1 class="bk-title">Brand kit</h1>
+    <p class="bk-lead">Everything you need for one-off pieces, in Canva or anywhere else.</p>
+
+    <h2 class="bk-h">Logos</h2>
+    <div class="logogrid" id="logoGrid"></div>
+
+    <h2 class="bk-h">Colors</h2>
+    <p class="bk-note">Click a color to copy its code.</p>
+    <div class="swatches" id="swatches"></div>
+
+    <h2 class="bk-h">Fonts</h2>
+    <div class="fontlist" id="fontList"></div>
+
+    <h2 class="bk-h">Quick rules</h2>
+    <div class="rules">
+      <div class="rulecard do"><h3>Do</h3><ul>
+        <li>Keep the logo in its original proportions.</li>
+        <li>Leave clear space around the logo, about the height of the letter S.</li>
+        <li>Use only the colors above.</li>
+        <li>Use real club photos, and only with the person's consent.</li>
+      </ul></div>
+      <div class="rulecard dont"><h3>Don't</h3><ul>
+        <li>Stretch, rotate, recolor or add effects to the logo.</li>
+        <li>Put text over busy parts of a photo.</li>
+        <li>Post member phone numbers, emails or other contact details.</li>
+        <li>Squeeze in extra text. Shorter reads better.</li>
+      </ul></div>
+    </div>
+  </div>
+</section>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<div class="modal" id="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle" hidden>
+  <div class="modalbox">
+    <h2 id="modalTitle">Save your image</h2>
+    <p class="modaltext">Press and hold the image, then choose Save to Photos. On a computer, right click and choose Save image as.</p>
+    <img id="modalImg" alt="Your finished post">
+    <button type="button" class="primary" id="modalClose">Done</button>
+  </div>
+</div>
+
+<script src="brand.js"></script>
+<script src="assets/logos.js"></script>
+<script src="templates.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
